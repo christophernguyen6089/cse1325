@@ -23,6 +23,7 @@ public class Die{
     
 
     public int AdvancedRoll(){
+        rollSum=0;
         for(int i=0; i<rollAmount; i++){
             rollArray[i]=roll();
             rollSum += rollArray[i];

@@ -10,7 +10,7 @@ public class extremeBonus{
         d6.setFaces(6);
         
         String name;
-        System.out.print("Hello, welcome to the lazy stat generator for Dungeons & Dragons.\nPlease tell me the name of your character: ");
+        System.out.print("Hello, welcome to the lazy stat generator for Dungeons & Dragons.\nThis is made to randomly generate a character for Dungeons & Dragons.\nWithout further ado, please tell me the name of your character: ");
         name = scan.nextLine();
         System.out.println("Welcome, "+name+".\n");
         
