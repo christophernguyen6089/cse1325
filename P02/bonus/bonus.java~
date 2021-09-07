@@ -1,0 +1,7 @@
+public class bonus{
+    public static void main(String args[]){
+        Die d20 = new Die();
+        d20.Die(20);
+        System.out.println(d20.roll());
+    }
+}
