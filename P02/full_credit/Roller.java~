@@ -28,7 +28,7 @@ public class Roller{
         }
         
         Arrays.sort(arr1);
-        rollAverage = rollSum/diceRoll;
+        rollAverage = rollSum/diceRollAmount;
         
         for(int j=0; j<diceRollAmount; j++){
             System.out.print(arr1[j] + "    ");

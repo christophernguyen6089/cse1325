@@ -34,6 +34,6 @@ public class Roller{
             System.out.print(arr1[j] + "    ");
         }
         System.out.println("\nSum of all rolls: "+rollSum);
-        System.out.print("Avg of all rolls: "+rollAverage);
+        System.out.println("Avg of all rolls: "+rollAverage);
     }
 }
