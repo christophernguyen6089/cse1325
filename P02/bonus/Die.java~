@@ -3,7 +3,7 @@ import java.util.Scanner;
 
 public class Die{
     private int faces=0;
-    //It kind of makes me curious and confused as to why there is a class named "Die" and a function called "Die" in the UML?
+    //It kind of makes me curious as to why there is a class named "Die" and a function called "Die" in the UML?
     public void Die(int newFaces){
         faces = newFaces;
     }
