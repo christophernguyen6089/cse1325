@@ -13,13 +13,13 @@ public class Test{
         System.out.println("Enter your name: ");
         yourName = scan.nextLine();
         Matcher matcherName = patternName.matcherName(yourName);
-        //why does this make error?
+        //TODO: why does this make error?
         if(matcherName.find()){
             System.out.print("Great. "+yourName+", please enter a grade: ");
             while(true){
                 yourGrade = scan.nextDouble();
                 Matcher matcherGrade = patternGrade.matcherGrade(yourGrade);
-                //why does this make error?
+                //TODO: why does this make error?
                 if(matcherGrade.find()){
                     System.out.println("Grade entered: "+yourGrade);
                 }

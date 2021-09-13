@@ -1,13 +1,15 @@
-import java.util.ArrayList;
-
 public class Student{
     private String studentName;
-    private double examSum=0;
-    private double examNumGrades=0;
-    //private ArrayList studentList = new ArrayList();
+    private double examSum = 0;
+    private double examNumGrades = 0;
+    
+    public void printMenu(){
+        println("Main menu\n==========")
+        println("\nAdd new (S)tudents\nAdd exam (G)rades\nList all (A)verages\nE(X)it\n");
+        print("Command? ");
+    }
     
     public void Student(String name){
-        //studentList.add(name);
         this.studentName = name;
     }
     public String getName(){
