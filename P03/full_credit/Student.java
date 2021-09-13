@@ -1,12 +1,12 @@
 public class Student{
-    private string studentName;
+    private String studentName;
     private double examSum=0;
     private double examNumGrades=0;
     
     public void Student(String name){
-        this.name = studentName;
+        this.studentName = name;
     }
-    public string getName(){
+    public String getName(){
         return studentName;
     }
     public void addExam(double grade){
@@ -14,7 +14,7 @@ public class Student{
         examNumGrades++;
     }
     public double average(){
-        if(examNumGrades.equals(0)){
+        if(examNumGrades==0){
             return 100.00;
         }
         else{
