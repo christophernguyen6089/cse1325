@@ -13,9 +13,9 @@ public class Grades{
         yourName.Student(inputName);
         
         while(flag==1){
-            System.out.print("Enter your exam grade, enter '-1' to exit: ");
-            inputGrade = scan.nextInt();
-            if(inputGrade==-1.0){
+            System.out.print("Enter your exam grade (< 0 when done): ");
+            inputGrade = scan.nextDouble();
+            if(inputGrade<0){
                 System.out.println("Done. "+yourName.getName()+", your average is: "+yourName.average());
                 break;
             }
