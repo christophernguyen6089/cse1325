@@ -1,44 +1,47 @@
 import java.util.Scanner;
-//TODO: import regex
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Grades{
     public static void main(String args[]){
         Scanner scan = new Scanner(System.in);
         String inputName;
         String inputMenu;
-        
-        ArrayList inputList = new ArrayList();
-        
-        Student yourName = new Student();
+        Pattern patternName = Pattern.compile("\\w+(\\s\\w+)*");
+              
+        //Student yourName = new Student();
         
         while(true){
-            printMenu();
+            Student.printMenu();
             inputMenu=scan.nextLine();
             switch(inputMenu){
                 case "S":
                     System.out.println("New student's name? ");
                     inputName = scan.nextLine();
-                    inputList.add(inputName);
-                    
-                    break;
-                case "s":
-                    System.out.println("New student's name? ");
-                    inputName = scan.nextLine();
-                    
-                    break;
+                    Matcher matcherName = patternName.matcher(inputName);
+                        if(matcherName.matches()==true){
+                            //Student(inputName);
+                            
+                        }
+                    else{
+                        break;
+                    }
                 
                 case "G":
-                case "g":
+                    //find how many students are there in the array
+                    //enter grades for all of them
+                    break;
                 
                 case "A":
-                case "a":
+                    //find how many students are there in the array
+                    //access both grade arrays and finds the average for all
+                    //print
+                    break;
                 
                 case "X":
-                    System.exit();
+                    System.exit(1);
                     break;
-                case "x":
-                    System.exit();
-                    break;
+
                 default:
                     System.out.println("Please enter a proper input.");
                     break;

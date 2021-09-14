@@ -1,16 +1,22 @@
+import java.util.ArrayList;
+
 public class Student{
     private String studentName;
+    private ArrayList studentNameList = new ArrayList();
     private double examSum = 0;
+    private ArrayList examSumList = new ArrayList();
     private double examNumGrades = 0;
+    private ArrayList examNumGradesList = new ArrayList();
     
-    public void printMenu(){
-        println("Main menu\n==========")
-        println("\nAdd new (S)tudents\nAdd exam (G)rades\nList all (A)verages\nE(X)it\n");
-        print("Command? ");
+    static void printMenu(){
+        System.out.println("Main menu\n==========");
+        System.out.println("\nAdd new (S)tudents\nAdd exam (G)rades\nList all (A)verages\nE(X)it\n");
+        System.out.print("Command? ");
     }
     
     public void Student(String name){
         this.studentName = name;
+        studentNameList.add(name);
     }
     public String getName(){
         return studentName;
