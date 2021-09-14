@@ -4,7 +4,7 @@ public class Student{
     private double examNumGrades=0;
     
     public void Student(String name){
-        this.name = studentName;
+        this.studentName = name;
     }
     public String getName(){
         return studentName;
