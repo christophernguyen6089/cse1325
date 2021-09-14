@@ -8,7 +8,7 @@ public class Student{
     private double examNumGrades = 0;
     private ArrayList examNumGradesList = new ArrayList();
     
-    static void printMenu(){
+    public void printMenu(){
         System.out.println("Main menu\n==========");
         System.out.println("\nAdd new (S)tudents\nAdd exam (G)rades\nList all (A)verages\nE(X)it\n");
         System.out.print("Command? ");
@@ -16,6 +16,7 @@ public class Student{
     
     public void Student(String name){
         this.studentName = name;
+        studentNameList.add(name);
     }
     public String getName(){
         return studentName;

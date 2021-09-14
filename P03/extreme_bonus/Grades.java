@@ -9,27 +9,29 @@ public class Grades{
         String inputMenu;
         Pattern patternName = Pattern.compile("\\w+(\\s\\w+)*");
               
-        //Student yourName = new Student();
+        Student yourList = new Student();
         
         while(true){
-            Student.printMenu();
+            yourList.printMenu();
             inputMenu=scan.nextLine();
             switch(inputMenu){
                 case "S":
-                    System.out.println("New student's name? ");
-                    inputName = scan.nextLine();
-                    Matcher matcherName = patternName.matcher(inputName);
-                        if(matcherName.matches()==true){
-                            //Student(inputName);
-                            
+                        while(true){
+                            System.out.print("New student's name? ");
+                            Matcher matcherName = patternName.matcher(scan.nextLine());
+                            if(matcherName.matches()==true){
+                                yourList.Student(matcherName);
+                                //aaaaand of course this makes an error.
+                            }
+                            else{
+                                break;
+                            }
                         }
-                    else{
-                        break;
-                    }
                 
                 case "G":
-                    //find how many students are there in the array
-                    //enter grades for all of them
+                    for(int i=0; i<yourList.studentNameList.size(); i++){
+                        yourList.addExam();
+                    }
                     break;
                 
                 case "A":
