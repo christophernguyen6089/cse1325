@@ -10,7 +10,11 @@ public class Boom{
         
         System.out.println("\n<Boom!>\n");
         fuse.Fuse(8);
-        puzzle.Puzzle("garbage collection");
+        
+        //HARDCODED SOLUTION
+        puzzle.Puzzle("hi");
+        //FIGURE OUT HOW TO SATISFY EXTREME BONUS, OH, AND DO THE BONUS AS WELL, CHRIS!!!
+        
         System.out.println("Enter lowercase letters to guess,\n! to propose a solution,\n0 to exit.");
         while(true){
             charGuess = scan.nextLine().charAt(0);
@@ -27,6 +31,7 @@ public class Boom{
                 }
                 else{
                     System.out.println("Wrong, try again...");
+                    System.out.print("Guess a letter: ");
                 }
                 continue;
             }

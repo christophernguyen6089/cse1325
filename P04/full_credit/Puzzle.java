@@ -4,6 +4,7 @@ public class Puzzle{
     
     public void Puzzle(String solution){
         this.solution = solution;
+        this.guesses = new boolean[solution.length()];
         for(int h=0; h<solution.length(); h++){
             this.guesses[h]=false;
         }
@@ -36,12 +37,14 @@ public class Puzzle{
         String str2 = "";
         for(int j=0; j<solution.length(); j++){
             if(this.guesses[j]==true){
-                System.out.print(solution.charAt(j));
+            //Note to self: please check up on this when I go home
+                System.out.print(this.solution.charAt(j));
             }
             else{
                 System.out.print("_");
             }
         }
+        System.out.println("");
         return str2;
     }
     
