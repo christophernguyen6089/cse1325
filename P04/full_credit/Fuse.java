@@ -1,8 +1,7 @@
 public class Fuse{
     private int time;
     public void Fuse(int time){
-        this.time = time;
-        
+        this.time = time; 
     }
     public boolean burn(){
         this.time--;

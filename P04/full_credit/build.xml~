@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<project name="Boom" default="build">
+    <presetdef name="javac">
+        <javac inculdeantruntime="false"/>
+    </presetdef>
+    
+    <target name="build" description="Compile source tree java files">
+        <javac debug="true" failonerror="true">
+            <sec path="."/>
+        </javac>
+    </target>
+</project>

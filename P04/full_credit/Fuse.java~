@@ -20,7 +20,7 @@ public class Fuse{
         for(int i=0; i<time; i++){
             System.out.print("-");
         }
-        System.out.println("*\n  _/__\n /    \\ \n!     !\n \\____/");
+        System.out.println("*\n  _/__\n /    \\ \n!      !\n \\____/");
         return str1;
     }
 }

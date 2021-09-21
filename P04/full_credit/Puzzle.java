@@ -14,7 +14,7 @@ public class Puzzle{
         if(this.solution.indexOf(c)!=-1){
             flag=true;
             for(int i=0; i<solution.length(); i++){
-                if(c==solution.indexOf(i)){
+                if(solution.indexOf(c,i)==i){
                     guesses[i]=true;
                 }
             }
@@ -39,6 +39,9 @@ public class Puzzle{
             if(this.guesses[j]==true){
             //Note to self: please check up on this when I go home
                 System.out.print(this.solution.charAt(j));
+            }
+            else if(solution.indexOf(' ',j)==j){
+                System.out.print(" ");
             }
             else{
                 System.out.print("_");
