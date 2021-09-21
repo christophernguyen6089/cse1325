@@ -11,9 +11,7 @@ public class Boom{
         System.out.println("\n<Boom!>\n");
         fuse.Fuse(8);
         
-        //HARDCODED SOLUTION
         puzzle.Puzzle("garbage collection");
-        //FIGURE OUT HOW TO SATISFY EXTREME BONUS, OH, AND DO THE BONUS AS WELL, CHRIS!!!
         
         System.out.println("Enter lowercase letters to guess,\n! to propose a solution,\n0 to exit.");
         while(true){

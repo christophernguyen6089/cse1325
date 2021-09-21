@@ -33,6 +33,10 @@ public class Boom{
                     System.out.println("Wrong...");
                     while(true){
                         fuse.burn();
+                        if(fuse.burn()==false){
+                            System.out.println("Game over...");
+                            System.exit(1);
+                        }
                     }
                 }
                 continue;

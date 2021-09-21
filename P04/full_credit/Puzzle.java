@@ -37,7 +37,6 @@ public class Puzzle{
         String str2 = "";
         for(int j=0; j<solution.length(); j++){
             if(this.guesses[j]==true){
-            //Note to self: please check up on this when I go home
                 System.out.print(this.solution.charAt(j));
             }
             else if(solution.indexOf(' ',j)==j){

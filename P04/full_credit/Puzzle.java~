@@ -40,7 +40,7 @@ public class Puzzle{
             //Note to self: please check up on this when I go home
                 System.out.print(this.solution.charAt(j));
             }
-            else if(solution.indexOf(' ',i)==i){
+            else if(solution.indexOf(' ',j)==j){
                 System.out.print(" ");
             }
             else{

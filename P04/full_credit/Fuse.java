@@ -12,6 +12,7 @@ public class Fuse{
             return false;
         }
     }
+    
    @Override
     public String toString(){
         String str1 = "";
