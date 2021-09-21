@@ -30,8 +30,14 @@ public class Boom{
                     System.exit(2);
                 }
                 else{
-                    System.out.println("Wrong, try again...");
-                    System.out.print("Guess a letter: ");
+                    System.out.println("Wrong...");
+                    while(true){
+                        fuse.burn();
+                        if(fuse.burn()==false){
+                            System.out.println("Game over...");
+                            System.exit(1);
+                        }
+                    }
                 }
                 continue;
             }
