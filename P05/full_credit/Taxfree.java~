@@ -1,13 +1,18 @@
 public class Taxfree extends Product{
-    public Taxfree(String name, double cost){
-    
+    public void Taxfree(String name, double cost){
+        this.name = name;
+        this.unitCost = cost;
     }
     
+    @Override
     public Product placeOrder(int quantity){
+        this.quantity = quantity;
+        return;
     }
     
     @Override
     public double price(){
+        return (this.quantity*this.unitCost);
     }
     
 }
