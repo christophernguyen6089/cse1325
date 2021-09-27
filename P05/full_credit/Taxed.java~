@@ -1,0 +1,7 @@
+public class Taxed{
+    private double tax;
+    
+    @Override
+    public double price(){
+    }
+}

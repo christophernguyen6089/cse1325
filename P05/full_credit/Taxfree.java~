@@ -1,0 +1,10 @@
+public class Taxfree{
+    public Taxfree(String name, double cost){
+    
+    }
+    
+    @Override
+    public double price(){
+    }
+    
+}
