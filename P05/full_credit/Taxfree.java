@@ -1,6 +1,7 @@
-public class Taxfree{
+public class Taxfree extends Product{
     public Taxfree(String name, double cost){
-    
+        this.name = name;
+        this.unitCost = cost;
     }
     
     public Product placeOrder(int quantity){
