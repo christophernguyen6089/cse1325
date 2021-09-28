@@ -1,7 +1,7 @@
 public class Taxed extends Product{
     private static double tax;
     
-    public void Taxed(String name, double cost){
+    public Taxed(String name, double cost){
         super(name,cost);
     }
     
@@ -13,7 +13,7 @@ public class Taxed extends Product{
     public Product placeOrder(int quantity){
         this.quantity += quantity;
         return this;
-    }
+    } 
     
     @Override
     public double price(){

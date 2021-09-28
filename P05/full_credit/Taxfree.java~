@@ -1,5 +1,5 @@
 public class Taxfree extends Product{
-    public void Taxfree(String name, double cost){
+    public Taxfree(String name, double cost){
         super(name,cost);
     }
     
@@ -12,6 +12,6 @@ public class Taxfree extends Product{
     @Override
     public double price(){
         return (this.quantity*this.unitCost);
-    }
+    } 
     
 }

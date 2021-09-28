@@ -15,6 +15,7 @@ public class Taxed extends Product{
         return this;
     }
     
+    
     @Override
     public double price(){
         return ((1+this.tax)*this.quantity*this.unitCost);

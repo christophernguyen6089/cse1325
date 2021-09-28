@@ -14,6 +14,7 @@ abstract class Product{
         this.quantity = 0;
     }
     
+    
     public abstract Product placeOrder(int quantity);
     
     public abstract double price();

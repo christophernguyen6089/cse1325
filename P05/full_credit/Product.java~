@@ -12,7 +12,7 @@ abstract class Product{
             //Throw Exception
         }
         this.quantity = 0;
-    }
+    } 
     
     public abstract Product placeOrder(int quantity);
     
@@ -32,7 +32,7 @@ abstract class Product{
         System.out.println("5) Soda ($0.99)");
         */
         
-        System.out.println(this.indexOf(this.name)+") "+ this.name +" ($"+this.unitCost+")");
+        System.out.println(this.name +" ($"+this.unitCost+")");
         //index++;
         
         return str1;
