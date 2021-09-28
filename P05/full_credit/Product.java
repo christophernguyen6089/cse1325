@@ -3,7 +3,7 @@ abstract class Product{
     protected double unitCost;
     protected int quantity;
     
-    public void Product(String name, double unitCost){
+    public Product(String name, double unitCost){
         this.name = name;
         this.unitCost = unitCost;
         if(unitCost<0){
@@ -19,7 +19,18 @@ abstract class Product{
     @Override
     public String toString(){
         String str1 = "";
-        System.out.println(this.name +" ($" +(int)this.unitCost+".%.2f"+this.unitCost);
+        
+        /*
+        System.out.println("0) Milk ($0.99)");
+        System.out.println("1) Bread ($1.99)");
+        System.out.println("2) Cheese ($3.99)");
+        System.out.println("3) Candy bar ($1.99)");
+        System.out.println("4) Chips ($2.99)");
+        System.out.println("5) Soda ($0.99)");
+        */
+        
+        System.out.println(this.name +" ($"+this.unitCost+")");
+        
         return str1;
     }
     

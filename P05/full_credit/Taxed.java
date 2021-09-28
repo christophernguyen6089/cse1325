@@ -1,9 +1,8 @@
 public class Taxed extends Product{
     private static double tax;
     
-    public void Taxed(String name, double cost){
-        this.name = name;
-        this.unitCost = cost;
+    public Taxed(String name, double cost){
+        super(name,cost);
     }
     
     static void setSalesTaxRate(double salesTaxRate){

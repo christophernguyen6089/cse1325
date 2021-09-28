@@ -2,8 +2,7 @@ public class Taxed extends Product{
     private static double tax;
     
     public void Taxed(String name, double cost){
-        this.name = name;
-        this.unitCost = cost;
+        super(name,cost);
     }
     
     static void setSalesTaxRate(double salesTaxRate){
@@ -13,7 +12,7 @@ public class Taxed extends Product{
     @Override
     public Product placeOrder(int quantity){
         this.quantity += quantity;
-        //return this.Product;
+        return this;
     }
     
     @Override
