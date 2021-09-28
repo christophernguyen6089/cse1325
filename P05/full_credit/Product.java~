@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 abstract class Product{
     protected String name;
     protected double unitCost;
@@ -19,14 +21,19 @@ abstract class Product{
     @Override
     public String toString(){
         String str1 = "";
+        //int index=0;
+        
+        /*
         System.out.println("0) Milk ($0.99)");
         System.out.println("1) Bread ($1.99)");
         System.out.println("2) Cheese ($3.99)");
         System.out.println("3) Candy bar ($1.99)");
         System.out.println("4) Chips ($2.99)");
         System.out.println("5) Soda ($0.99)");
+        */
         
-        //System.out.println(this.name +" ($"+this.unitCost+")");
+        System.out.println(this.indexOf(this.name)+") "+ this.name +" ($"+this.unitCost+")");
+        //index++;
         
         return str1;
     }
