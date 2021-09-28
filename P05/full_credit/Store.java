@@ -49,7 +49,9 @@ public class Store{
                     total+=taxed.get(i).price();
                     total+=taxfree.get(i).price();
                 }
-                System.out.println("\n\nThank you for shopping, your total is: "+total);
+                System.out.print("\n\nThank you for shopping, your total is: ");
+                System.out.format("%2.2f",total);
+                System.out.println("");
                 break;
             }
             
