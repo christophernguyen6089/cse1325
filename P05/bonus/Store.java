@@ -1,0 +1,91 @@
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class Store{
+    public static void cli(){
+        Scanner scan = new Scanner(System.in);
+        int inputID,inputQuantity;
+        ArrayList<Taxfree> taxfree = new ArrayList<>();
+        taxfree.add(new Taxfree("Milk",0.99));
+        taxfree.add(new Taxfree("Bread",1.99));
+        taxfree.add(new Taxfree("Cheese",3.99));
+        
+        ArrayList<Taxed> taxed = new ArrayList<>();
+        taxed.add(new Taxed("Candy Bar",1.99));
+        taxed.add(new Taxed("Chips",2.99));
+        taxed.add(new Taxed("Soda",3.99));
+        
+        Taxed.setSalesTaxRate(0.10);
+        
+        while(true){
+            System.out.println("\n=====\nStore\n=====\n");
+            taxfree.toString();
+            taxed.toString();
+            
+            for(int i=0; i<3; i++){
+                if(i==0){
+                    System.out.println("");
+                }
+                if(taxed.get(i).quantity!=0){
+                    System.out.println(taxed.get(i).name+" @ "+taxed.get(i).quantity+" for "+taxed.get(i).unitCost+" each.");
+                }
+                if(taxfree.get(i).quantity!=0){
+                    System.out.println(taxfree.get(i).name+" @ "+taxfree.get(i).quantity+" for "+taxfree.get(i).unitCost+" each.");
+                }
+            }
+            
+            System.out.print("Please give your order (0=Milk, 1=Bread,..., 5=Soda): ");
+            inputID = scan.nextInt();
+            System.out.print("Please give your quantity of said item, enter 0 to check out your order: ");
+            inputQuantity = scan.nextInt();
+            if(inputQuantity<0){
+                throw new RuntimeException("Invalid Quantity input: "+inputQuantity);
+            }
+            
+            if(inputQuantity==0){
+                double total=0;
+                for(int i=0; i<3; i++){
+                    total+=taxed.get(i).price();
+                    total+=taxfree.get(i).price();
+                }
+                System.out.print("\n\nThank you for shopping, your total is: ");
+                System.out.format("%2.2f",total);
+                System.out.println("");
+                break;
+            }
+            
+            switch (inputID){
+                case 0:
+                    taxfree.get(0).placeOrder(inputQuantity);
+                    break;
+                case 1:
+                    taxfree.get(1).placeOrder(inputQuantity);
+                    break;
+                case 2:
+                    taxfree.get(2).placeOrder(inputQuantity);
+                    break;
+                case 3:
+                    taxed.get(0).placeOrder(inputQuantity);
+                    break;
+                case 4:
+                    taxed.get(1).placeOrder(inputQuantity);
+                    break;
+                case 5:
+                    taxed.get(2).placeOrder(inputQuantity);
+                    break;
+                default:
+                    throw new RuntimeException("Invalid Item input: "+inputID);
+                
+            }
+            
+            
+        }
+        
+    
+    }
+
+    public static void main(String args[]){
+        cli();
+    }
+}

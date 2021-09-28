@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<project name="Store" default="build">
+    <presetdef name="javac">
+        <javac inculdeantruntime="false"/>
+    </presetdef>
+    
+    <target name="build" description="Compile source tree java files">
+        <javac debug="true" failonerror="true">
+            <sec path="."/>
+        </javac>
+    </target>
+    
+    <javadoc packagenames="bonus.*">
+            sourcepath="."
+            excludepackagenames="com.dummy.test.doc-files.*"
+            defaultexcludes="yes"
+            destdir="docs/api"
+            author="true"
+            version="true"
+            use="true"
+            windowtitle="Store API"
+        /**
+          *Creates a command line interface for a Store instance
+          *@param name      String: the name of the product
+          *@param cost      integer: the cost of the product
+          *@param tax       double: the tax rate to be applied to certain products, such as chips
+          *@param inputID   int: the user's input for the product they want to buy
+          *@param inputQuantity int: the user's input for the quantity at which they want to buy the product.
+          *@author          Christopher Nguyen
+          *@version         1.0
+          *@since           1.0
+          *@license.agreement Gnu General Public Licence 3.0
+        */
+    </javadoc>
+    
+    <target name="clean" description="Clean output files">
+        <delete>
+            <fileset dir=".">
+                <include name="**/*.class"/>
+            </fileset>
+        </delete>
+    </target>
+</project>
