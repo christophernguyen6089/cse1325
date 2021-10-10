@@ -5,7 +5,7 @@ public class Donut extends Product{
     protected boolean sprinkles;
     protected Filling filling;
     
-    public Donut(String name, double price, double cost, Frosting frosting, boolean sprinkles, Filling filling){
+    public void Donut(String name, double price, double cost, Frosting frosting, boolean sprinkles, Filling filling){
         super(name,price,cost);
         this.frosting = frosting;
         this.sprinkles = sprinkles;

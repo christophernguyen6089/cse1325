@@ -14,7 +14,7 @@ public class Product{
     @Override
     public String toString(){
         //TODO
-        return this.name+" $"+this.price;
+        return this.name+" $"+this.price+this.cost;
     }
 }
 

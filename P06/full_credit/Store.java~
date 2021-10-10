@@ -21,8 +21,7 @@ public class Store{
     }
     @Override
     public String toString(){
-        //TODO
-        return "a";
+        return products.name+" $"+products.price;
     }
 }
 
