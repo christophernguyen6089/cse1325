@@ -1,10 +1,17 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Store{
     protected String storeName;
     protected ArrayList<Product> products = new ArrayList<Product>();
     
-    //products.addProduct("Choco Dough",2.99,0.99,chocolate,true,unfilled);
+    //products.add(new Donut("Coco Late",2.99,0.99,chocolate,true,unfilled));
+    //addProduct(new Donut("Coco Late",2.99,0.99,chocolate,true,unfilled));
+    
+    //Product ChocoDoe = new Product("Chocolate",2.99,0.99, chocolate, true, unfilled);
+    //Donut ChocoDoe = new Donut("Chocolate",2.99,0.99, chocolate, true, unfilled);
+    
+    //addProduct(ChocoDoe);
 
     public Store(String storeName){
         this.storeName=storeName;

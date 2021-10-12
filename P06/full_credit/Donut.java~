@@ -15,7 +15,7 @@ public class Donut extends Product{
     public String toString(){
         return super.toString();
     }
-    Donut donut = addProduct(Donut("Choco Dough",2.99,0.99,chocolate,true,unfilled));
-    addProduct(Donut("Vanilla Dough",2.99,0.99,vanilla,false,unfilled));
+    
+    Donut ChocoDoe = new Donut("Chocolate",2.99,0.99, chocolate, true, unfilled);
 }
 
