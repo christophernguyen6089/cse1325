@@ -1,0 +1,21 @@
+import java.util.ArrayList;
+
+public class Donut extends Product{
+    protected Frosting frosting;
+    protected boolean sprinkles;
+    protected Filling filling;
+
+    public Donut(String name, double price, double cost, Frosting frosting, boolean sprinkles, Filling filling){
+        super(name,price,cost);
+        this.frosting = frosting;
+        this.sprinkles = sprinkles;
+        this.filling = filling;
+    }
+    @Override
+    public String toString(){
+        return super.toString();
+    }
+    Donut donut = addProduct(Donut("Choco Dough",2.99,0.99,chocolate,true,unfilled));
+    addProduct(Donut("Vanilla Dough",2.99,0.99,vanilla,false,unfilled));
+}
+

@@ -1,2 +1,4 @@
+package donutPackage;
+
 public enum Darkness{blond, light, medium, dark, extreme}
 
