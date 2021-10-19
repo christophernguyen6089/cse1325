@@ -13,7 +13,8 @@ import javax.imageio.ImageIO;
 import java.lang.Math;
 
 public class MainWin extends JFrame{
-    private Store store;
+    private Store store = new Store("JADE");
+    //Apparently, this was all it took to not get Null pointer exception...
     private JLabel data;
     private JMenuItem mJava;
     private JButton bJava;
@@ -173,6 +174,10 @@ public class MainWin extends JFrame{
             JOptionPane.QUESTION_MESSAGE
         );
         
+        if(button == JOptionPane.OK_OPTION){
+            store.addProduct(new Java(name.getText(), (double)price.getValue(), (double)cost.getValue(), Darkness.blond));
+        }
+        
         pack();
         setVisible(true);
     }
@@ -232,6 +237,9 @@ public class MainWin extends JFrame{
             JOptionPane.OK_CANCEL_OPTION,
             JOptionPane.QUESTION_MESSAGE
         );
+        if(button == JOptionPane.OK_OPTION){
+            store.addProduct(new Donut(name.getText(), (double)price.getValue(), (double)cost.getValue(), Frosting.unfrosted, false, Filling.unfilled));
+        }
         
         pack();
         setVisible(true);
