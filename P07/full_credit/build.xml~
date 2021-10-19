@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<project name="JADE" default="build">
+<project name="Store" default="build">
     <presetdef name="javac">
         <javac inculdeantruntime="false"/>
     </presetdef>
