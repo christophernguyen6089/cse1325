@@ -159,6 +159,20 @@ public class MainWin extends JFrame{
             });
         add(cost,constraints);
         
+        Object[] objects = {
+            nameLabel, name,
+            priceLabel, price, priceNumber,
+            costLabel, cost, costNumber
+        };
+        
+        int button = JOptionPane.showConfirmDialog(
+            this,     
+            objects,
+            "New Java",
+            JOptionPane.OK_CANCEL_OPTION,
+            JOptionPane.QUESTION_MESSAGE
+        );
+        
         pack();
         setVisible(true);
     }
@@ -204,6 +218,20 @@ public class MainWin extends JFrame{
                 costNumber.setText(Double.toString(val));
             });
         add(cost,constraints);
+        
+        Object[] objects = {
+            nameLabel, name,
+            priceLabel, price, priceNumber,
+            costLabel, cost, costNumber
+        };
+        
+        int button = JOptionPane.showConfirmDialog(
+            this,     
+            objects,
+            "New Java",
+            JOptionPane.OK_CANCEL_OPTION,
+            JOptionPane.QUESTION_MESSAGE
+        );
         
         pack();
         setVisible(true);

@@ -113,7 +113,7 @@ public class MainWin extends JFrame{
         */
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(480,110);
-        setLayout(new GridBagLayout());
+        //setLayout(new GridBagLayout());
         
         JLabel darkness = new JLabel("Darkness"); 
         Darkness[] darknessOptions = {Darkness.blond, Darkness.light, Darkness.medium, Darkness.dark, Darkness.extreme};
@@ -159,11 +159,82 @@ public class MainWin extends JFrame{
             });
         add(cost,constraints);
         
+        Object[] objects = {
+            name, nameLabel,
+            price, priceLabel,
+            cost, costLabel
+        };
+        
+        int button = JOptionPane.showConfirmDialog(
+            this,     
+            objects,
+            "New Java",
+            JOptionPane.OK_CANCEL_OPTION,
+            JOptionPane.QUESTION_MESSAGE
+        );
+        
         pack();
         setVisible(true);
     }
     
     protected void onCreateDonutClick(){
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setSize(480,110);
+
+        JLabel nameLabel = new JLabel("<HTML><br/>Name of new donut</HTML>");
+        add(nameLabel,constraints);
+        
+        name = new JTextField(20);
+        name.addActionListener(
+            event -> JOptionPane.showMessageDialog(this, name.getText()));
+        add(name,constraints);
+        
+        priceNumber = new JLabel("0");
+        add(priceNumber, constraints);
+        
+        JLabel priceLabel = new JLabel("<HTML><br/>Price of new donut</HTML>");
+        add(priceLabel,constraints);
+        
+        price = new JSlider(0, 10);
+        price.setValue(0);
+        price.addChangeListener(
+            event -> {
+                double val=price.getValue();
+                priceNumber.setText(Double.toString(val));
+            });
+        add(price,constraints);
+        
+        costNumber = new JLabel("0");
+        add(costNumber, constraints);
+        
+        JLabel costLabel = new JLabel("<HTML><br/>Cost of new donut</HTML>");
+        add(costLabel,constraints);
+        
+        cost = new JSlider(0, 10);
+        cost.setValue(0);
+        cost.addChangeListener(
+            event -> {
+                double val=cost.getValue();
+                costNumber.setText(Double.toString(val));
+            });
+        add(cost,constraints);
+        
+        Object[] objects = {
+            nameLabel, name,
+            priceLabel, price, priceNumber,
+            costLabel, cost, costNumber
+        };
+        
+        int button = JOptionPane.showConfirmDialog(
+            this,     
+            objects,
+            "New Java",
+            JOptionPane.OK_CANCEL_OPTION,
+            JOptionPane.QUESTION_MESSAGE
+        );
+        
+        pack();
+        setVisible(true);
     }
     
     protected void onAboutClick(){
@@ -186,6 +257,7 @@ public class MainWin extends JFrame{
         
         about.setSize(900,200);
         about.setVisible(true);
+        
     }
     
     protected void onQuitClick(){
