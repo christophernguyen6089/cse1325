@@ -1,0 +1,342 @@
+package gui;
+
+import store.*;
+
+import java.io.File;
+import java.io.IOException;
+
+import javax.swing.*;
+
+import java.awt.*;
+
+import javax.imageio.ImageIO;
+import java.lang.Math;
+
+public class MainWin extends JFrame{
+    private Store store;
+    private JLabel data;
+    private JMenuItem mJava;
+    private JButton bJava;
+    private JMenuItem mDonut;
+    private JButton bDonut;
+    
+    private JButton bAbout;
+    private JButton bQuit;
+    
+    private GridBagConstraints constraints;
+    
+    private JLabel priceNumber;
+    private JLabel costNumber;
+    
+    private JTextField name;
+    private JSlider price;
+    private JSlider cost;
+    
+    private JComboBox combo;
+    
+    private JComboBox darkness;
+    private JComboBox frosting;
+    private JComboBox filling;
+        
+    public MainWin(String mainWindowTitle){
+        super(mainWindowTitle);
+        store = new Store("JADE");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setSize(900, 450);
+        
+        JMenuBar menubar = new JMenuBar();
+        
+        JMenu file = new JMenu("File");
+        JMenu create = new JMenu("Create");
+        JMenu help = new JMenu("Help");
+        
+        JMenuItem quit = new JMenu("Quit");
+        mJava = new JMenu("Java");
+        mDonut= new JMenu("Donut");
+        JMenuItem about= new JMenu("About");
+        
+        quit.addActionListener(event -> onQuitClick());
+        mJava.addActionListener(event -> onCreateJavaClick());
+        mDonut.addActionListener(event -> onCreateDonutClick());
+        about.addActionListener(event -> onAboutClick());
+        
+        menubar.add(file);
+        menubar.add(create);
+        menubar.add(help);
+        
+        file.add(quit);
+        create.add(mJava);
+        create.add(mDonut);
+        help.add(about);
+        
+        setJMenuBar(menubar);
+        
+        JToolBar toolbar = new JToolBar("Java Controls");
+        
+        bJava = new JButton(new ImageIcon("java.png"));
+            bJava.setActionCommand("Create new Java");
+            bJava.setToolTipText("Create a new drink");
+            toolbar.add(bJava);
+            bJava.addActionListener(event -> onCreateJavaClick());
+        
+        bDonut= new JButton(new ImageIcon("donut.png"));
+            bDonut.setActionCommand("Create new Donut");
+            bDonut.setToolTipText("Create a new donut");
+            toolbar.add(bDonut);
+            bDonut.addActionListener(event -> onCreateDonutClick());
+            
+        bAbout= new JButton(new ImageIcon("question.png"));
+            bAbout.setActionCommand("About the program");
+            bAbout.setToolTipText("About the program");
+            toolbar.add(bAbout);
+            bAbout.addActionListener(event -> onAboutClick());
+            
+        bQuit = new JButton(new ImageIcon("x.png"));
+            bQuit.setActionCommand("Quit");
+            bQuit.setToolTipText("Quit the program");
+            toolbar.add(bQuit);
+            bQuit.addActionListener(event -> onQuitClick());
+        
+        getContentPane().add(toolbar, BorderLayout.PAGE_START);
+        
+        data = new JLabel();
+        add(data, BorderLayout.CENTER);
+        
+        setLayout(new GridBagLayout());
+        constraints = new GridBagConstraints();
+        constraints.gridx = 0;
+        constraints.gridy = GridBagConstraints.RELATIVE;
+        constraints.gridwidth = 1;
+        constraints.gridheight = 1;
+        constraints.weightx = 1;
+        constraints.weighty = 1;
+        constraints.insets = new Insets(0,5,0,5);
+        constraints.fill= GridBagConstraints.BOTH;
+        constraints.anchor=GridBagConstraints.CENTER;
+    }
+    
+    protected void onCreateJavaClick(){
+        //super("Java");
+        /*JDialog createJava = new JDialog();
+        createJava.setLayout(new FlowLayout());
+        createJava.setSize(480,110);
+        createJava.setLayout(new GridBagLayout());
+        */
+        //try{
+            setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            setSize(480,110);
+        //setLayout(new GridBagLayout());      
+        
+            JLabel nameLabel = new JLabel("<HTML><br/>Name of new drink</HTML>");
+            add(nameLabel,constraints);
+        
+            name = new JTextField(20);
+            name.addActionListener(
+                event -> JOptionPane.showMessageDialog(this, name.getText()));
+            add(name,constraints);
+        
+        
+        
+            priceNumber = new JLabel("0");
+            add(priceNumber, constraints);
+        
+            JLabel priceLabel = new JLabel("<HTML><br/>Price of new drink</HTML>");
+            add(priceLabel,constraints);
+        
+            price = new JSlider(0, 10);
+            price.setValue(0);
+            price.addChangeListener(
+                event -> {
+                    double val=price.getValue();
+                    priceNumber.setText(Double.toString(val));
+                });
+            add(price,constraints);
+        
+            
+        
+            costNumber = new JLabel("0");
+            add(costNumber, constraints);
+        
+            JLabel costLabel = new JLabel("<HTML><br/>Cost of new drink</HTML>");
+            add(costLabel,constraints);
+        
+            cost = new JSlider(0, 10);
+            cost.setValue(0);
+            cost.addChangeListener(
+                event -> {
+                    double val=cost.getValue();
+                    costNumber.setText(Double.toString(val));
+                });
+            add(cost,constraints);
+            
+            
+            
+            JLabel darknessLabel = new JLabel("<HTML><br/>Darkness of new drink"); 
+            Darkness[] darknessOptions = {Darkness.blond, Darkness.light, Darkness.medium, Darkness.dark, Darkness.extreme};
+            
+            darkness = new JComboBox<Darkness>(darknessOptions);
+            darkness.addActionListener(
+                event -> JOptionPane.showMessageDialog(this, (Darkness)darkness.getSelectedItem()));
+            add(darkness,constraints);
+        
+        Object[] objects = {
+            nameLabel, name,
+            priceLabel, price, priceNumber,
+            costLabel, cost, costNumber,
+            darknessLabel, darkness
+        };
+        
+        int button = JOptionPane.showConfirmDialog(
+            this,     
+            objects,
+            "New Java",
+            JOptionPane.OK_CANCEL_OPTION,
+            JOptionPane.QUESTION_MESSAGE
+        );
+        
+        
+        if(button == JOptionPane.OK_OPTION){
+            Java java = new Java(name.getText(),(double)price.getValue(),(double)cost.getValue(),(Darkness)darkness.getSelectedItem());
+            store.addProduct(java);
+        }
+        
+        updateDisplay();
+        setVisible(true);
+    }
+    
+    protected void onCreateDonutClick(){
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setSize(480,110);
+
+        JLabel nameLabel = new JLabel("<HTML><br/>Name of new donut</HTML>");
+        add(nameLabel,constraints);
+        
+        name = new JTextField(20);
+        name.addActionListener(
+            event -> JOptionPane.showMessageDialog(this, name.getText()));
+        add(name,constraints);
+        
+        
+        
+        
+        priceNumber = new JLabel("0");
+        add(priceNumber, constraints);
+        
+        JLabel priceLabel = new JLabel("<HTML><br/>Price of new donut</HTML>");
+        add(priceLabel,constraints);
+        
+        price = new JSlider(0, 10);
+        price.setValue(0);
+        price.addChangeListener(
+            event -> {
+                double val=price.getValue();
+                priceNumber.setText(Double.toString(val));
+            });
+        add(price,constraints);
+        
+        
+        
+        
+        costNumber = new JLabel("0");
+        add(costNumber, constraints);
+        
+        JLabel costLabel = new JLabel("<HTML><br/>Cost of new donut</HTML>");
+        add(costLabel,constraints);
+        
+        cost = new JSlider(0, 10);
+        cost.setValue(0);
+        cost.addChangeListener(
+            event -> {
+                double val=cost.getValue();
+                costNumber.setText(Double.toString(val));
+            });
+        add(cost,constraints);
+        
+        
+        
+        
+        JLabel frostingLabel = new JLabel("<HTML><br/>Frosting of new Donut"); 
+        Frosting[] frostingOptions = {Frosting.unfrosted, Frosting.chocolate, Frosting.vanilla, Frosting.strawberry};
+        
+        frosting = new JComboBox<Frosting>(frostingOptions);
+        frosting.addActionListener(
+            event -> JOptionPane.showMessageDialog(this, (Frosting)frosting.getSelectedItem()));
+        add(frosting,constraints);
+        
+        
+        
+        JLabel fillingLabel = new JLabel("<HTML><br/>Filling of new Donut");
+        Filling[] fillingOptions = {Filling.unfilled, Filling.creme, Filling.Bavarian, Filling.strawberry};
+        filling = new JComboBox<Filling>(fillingOptions);
+        filling.addActionListener(
+            event -> JOptionPane.showMessageDialog(this, (Filling)filling.getSelectedItem()));
+        add(filling,constraints);
+        
+        
+        
+        Object[] objects = {
+            nameLabel, name,
+            priceLabel, price, priceNumber,
+            costLabel, cost, costNumber,
+            frostingLabel, frosting,
+            fillingLabel, filling
+        };
+        
+        int button = JOptionPane.showConfirmDialog(
+            this,     
+            objects,
+            "New Java",
+            JOptionPane.OK_CANCEL_OPTION,
+            JOptionPane.QUESTION_MESSAGE
+        );
+        if(button == JOptionPane.OK_OPTION){
+            Donut donut = new Donut(name.getText(), (double)price.getValue(), (double)cost.getValue(), (Frosting)frosting.getSelectedItem(), false, (Filling)filling.getSelectedItem);
+            store.addProduct(donut);
+        }
+        
+        updateDisplay();
+        setVisible(true);
+    }
+    
+    private void updateDisplay(){
+        data.setText("<html>" + store.toString()
+                                     .replaceAll("<","%lt;")
+                                     .replaceAll(">","&gt;")
+                                     .replaceAll("\n","<br/>")
+                              + "</html>");
+    }
+    
+    protected void onAboutClick(){
+        JDialog about = new JDialog();
+        about.setLayout(new FlowLayout());
+        about.setTitle("Java and Donut Express");
+        
+        JLabel title = new JLabel("<html>"+
+               "<p>Jade</p>"+
+               "</html>");
+        about.add(title);
+        
+        JLabel string = new JLabel("<html>"+
+                "<p>Click the Java Icon to create a new Java</p>"+
+                "<p>Click the Donut Icon to create a new Donut</p>"+
+                "<p>Copyright, patents, trademarks, bleh. What's important is that I made this and that I'm not in law school XD</p>"+
+                "<p>Front end design is my passion</p>"+
+                "</html>");
+        about.add(string);
+        
+        about.setSize(900,200);
+        about.setVisible(true);
+        
+    }
+    
+    protected void onQuitClick(){
+        System.exit(0);
+    }
+
+    public static void main(String args[]){
+        MainWin mainWin = new MainWin("JADE");
+        mainWin.setVisible(true);
+    }
+}
+
+
