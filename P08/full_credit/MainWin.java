@@ -211,7 +211,8 @@ public class MainWin extends JFrame{
                  throw new RuntimeException("Incompatible JADE file format");
                 }
                 
-                //store = new Store(br);
+                store = new Store("JADE");
+                
             }
             catch (Exception e){
                 JOptionPane.showMessageDialog(this,"Unable to open" + filename + '\n' + e, "Failed", JOptionPane.ERROR_MESSAGE);
@@ -220,9 +221,30 @@ public class MainWin extends JFrame{
     }
     
     protected void onSaveClick(){
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(filename))){
+            bw.write(MAGIC_COOKIE + '\n');
+            store.save(bw);
+            //TODO: implement proper save method
+        }
+        catch (Exception e){
+            JOptionPane.showMessageDialog(this, "Unable to open " + filename + '\n' + e, "Failed", JOptionPane.ERROR_MESSAGE);
+        }
     }
     
     protected void onSaveAsClick(){
+        final JFileChooser fc = new JFileChooser(filename);
+        FileFilter jadeFiles = new FileNameExtensionFilter("JADE files","jade");
+        fc.addChoosableFileFilter(jadeFiles);
+        jc.setFileFilter(jadeFiles);
+        
+        int result = fc.showSaveDialog(this);
+        if (resilt == JFileChooser.APPROVE_OPTION){
+            filename = fc.getSelectedFile();
+            if(!filename.getAbsolutePath().endsWith(".nim")){
+                filename=new File(filename.getAbsolutePath()+ ".nim");
+            }
+            onSaveGameClick();
+        }
     }
     
         
