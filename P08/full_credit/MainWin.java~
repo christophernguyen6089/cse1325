@@ -2,8 +2,16 @@ package gui;
 
 import store.*;
 
+/*
 import java.io.File;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.io.IOException;
+*/
+
+import java.io.*;
 
 import javax.swing.*;
 
@@ -15,6 +23,12 @@ import java.lang.Math;
 public class MainWin extends JFrame{
     private Store store;
     private JLabel data;
+    
+    private File filename;
+    
+    private String NAME = "";
+    private String VERSON = "1.0";
+    
     private JMenuItem mJava;
     private JButton bJava;
     private JMenuItem mDonut;
@@ -37,12 +51,25 @@ public class MainWin extends JFrame{
     private JComboBox darkness;
     private JComboBox frosting;
     private JComboBox filling;
-        
+    
+    
+    private JMenuItem mNew;
+    private JButton bNew;
+    
+    private JMenuItem mOpen;
+    private JButton bOpen;
+    
+    private JMenuItem mSave;
+    private JButton bSave;
+    
+    private JMenuItem mSaveAs;
+    private JButton bSaveAs;
+    
     public MainWin(String mainWindowTitle){
         super(mainWindowTitle);
-        store = new Store("JADE");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(900, 450);
+        setSize(400, 200);
+        filename = new File("untitled.jade");
         
         JMenuBar menubar = new JMenuBar();
         
@@ -55,24 +82,62 @@ public class MainWin extends JFrame{
         mDonut= new JMenu("Donut");
         JMenuItem about= new JMenu("About");
         
-        quit.addActionListener(event -> onQuitClick());
-        mJava.addActionListener(event -> onCreateJavaClick());
-        mDonut.addActionListener(event -> onCreateDonutClick());
-        about.addActionListener(event -> onAboutClick());
-        
-        menubar.add(file);
-        menubar.add(create);
-        menubar.add(help);
+        mNew   = new JMenu("New");
+        mOpen  = new JMenu("Open");
+        mSave  = new JMenu("Save");
+        mSaveAs= new JMenu("Save As");
         
         file.add(quit);
         create.add(mJava);
         create.add(mDonut);
         help.add(about);
         
+        file.add(mNew);
+        file.add(mOpen);
+        file.add(mSave);
+        file.add(mSaveAs);
+        
+        menubar.add(file);
+        menubar.add(create);
+        menubar.add(help);
+        
+        
+        quit.addActionListener(event -> onQuitClick());
+        mJava.addActionListener(event -> onCreateJavaClick());
+        mDonut.addActionListener(event -> onCreateDonutClick());
+        about.addActionListener(event -> onAboutClick());
+        
         setJMenuBar(menubar);
         
         JToolBar toolbar = new JToolBar("Java Controls");
         
+        bNew = new JButton(new ImageIcon("new.png"));
+            bNew.setActionCommand("Create new Store");
+            bNew.setActionCommand("Create new Store");
+            toolbar.add(bNew);
+            bNew.addActionListener(event -> onNewClick());
+            
+        bOpen = new JButton(new ImageIcon("open.png"));
+            bNew.setActionCommand("Open Exisitng Store");
+            bNew.setActionCommand("Open Exisitng Store");
+            toolbar.add(bOpen);
+            bNew.addActionListener(event -> onOpenClick());
+            
+        bSave = new JButton(new ImageIcon("save.png"));
+            bNew.setActionCommand("Save your store onto an existing file");
+            bNew.setActionCommand("Save your store onto an existing file");
+            toolbar.add(bSave);
+            bNew.addActionListener(event -> onSaveClick());
+            
+        bSaveAs = new JButton(new ImageIcon("saveAs.png"));
+            bNew.setActionCommand("Save your store as a new file");
+            bNew.setActionCommand("Save your store as a new file");
+            toolbar.add(bSaveAs);
+            bNew.addActionListener(event -> onSaveAsClick());
+            
+            
+            
+            
         bJava = new JButton(new ImageIcon("java.png"));
             bJava.setActionCommand("Create new Java");
             bJava.setToolTipText("Create a new drink");
@@ -113,8 +178,48 @@ public class MainWin extends JFrame{
         constraints.insets = new Insets(0,5,0,5);
         constraints.fill= GridBagConstraints.BOTH;
         constraints.anchor=GridBagConstraints.CENTER;
+        
+        onNewClick();
     }
     
+    protected void onNewClick(){
+        store = new Store("JADE");
+        updateDisplay();
+    }
+    
+    protected void onOpenClick(){
+        final JFileChooser fc = newJFileChooser(filename);
+        FileFilter jadeFiles = new FileNameExtentionFilter("JADE files","jade");
+        fc.addChoosableFileFilter(jadeFiles);
+        fc.setFileFilter(jadeFiles);
+        
+        int result = fc.showOpenDialog(this);
+        if(result == JFileChooser.APPROVE_OPTION){
+            filename = fc.getSelectedFile();
+            
+            try (BufferedReader br = new BufferedReader(new FileReader(filename))){
+                String magicCookie = br.readLine();
+                if(!magicCookie.equals(MAGIC_COOKIE)){
+                 throw new RuntimeException("Not a jade file");
+                }
+                String fileVersion = br.readLine();
+                if(!fileVersion.equals(FILE_VERSION)){
+                 throw new RuntimeException("Incompatible JADE file format");
+                }
+            }
+            catch (Exception e){
+                JOptionPane.showMessageDialog(this,"Unable to open" + filename + '\n' + e, "Failed", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }
+    
+    protected void onSaveClick(){
+    }
+    
+    protected void onSaveAsClick(){
+    }
+    
+        
     protected void onCreateJavaClick(){
         //super("Java");
         /*JDialog createJava = new JDialog();
@@ -290,7 +395,7 @@ public class MainWin extends JFrame{
             JOptionPane.QUESTION_MESSAGE
         );
         if(button == JOptionPane.OK_OPTION){
-            Donut donut = new Donut(name.getText(), (double)price.getValue(), (double)cost.getValue(), (Frosting)frosting.getSelectedItem(), false, (Filling)filling.getSelectedItem);
+            Donut donut = new Donut(name.getText(), (double)price.getValue(), (double)cost.getValue(), (Frosting)frosting.getSelectedItem(), false, (Filling)filling.getSelectedItem());
             store.addProduct(donut);
         }
         
@@ -332,6 +437,19 @@ public class MainWin extends JFrame{
     protected void onQuitClick(){
         System.exit(0);
     }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
     public static void main(String args[]){
         MainWin mainWin = new MainWin("JADE");
