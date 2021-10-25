@@ -14,6 +14,8 @@ import java.io.IOException;
 import java.io.*;
 
 import javax.swing.*;
+import javax.swing.filechooser.FileFilter;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 import java.awt.*;
 
@@ -120,22 +122,22 @@ public class MainWin extends JFrame{
             bNew.addActionListener(event -> onNewClick());
             
         bOpen = new JButton(new ImageIcon("open.png"));
-            bNew.setActionCommand("Open Exisitng Store");
-            bNew.setActionCommand("Open Exisitng Store");
+            bOpen.setActionCommand("Open Exisitng Store");
+            bOpen.setActionCommand("Open Exisitng Store");
             toolbar.add(bOpen);
-            bNew.addActionListener(event -> onOpenClick());
+            bOpen.addActionListener(event -> onOpenClick());
             
         bSave = new JButton(new ImageIcon("save.png"));
-            bNew.setActionCommand("Save your store onto an existing file");
-            bNew.setActionCommand("Save your store onto an existing file");
+            bSave.setActionCommand("Save your store onto an existing file");
+            bSave.setActionCommand("Save your store onto an existing file");
             toolbar.add(bSave);
             bNew.addActionListener(event -> onSaveClick());
             
         bSaveAs = new JButton(new ImageIcon("saveAs.png"));
-            bNew.setActionCommand("Save your store as a new file");
-            bNew.setActionCommand("Save your store as a new file");
+            bSaveAs.setActionCommand("Save your store as a new file");
+            bSaveAs.setActionCommand("Save your store as a new file");
             toolbar.add(bSaveAs);
-            bNew.addActionListener(event -> onSaveAsClick());
+            bSaveAs.addActionListener(event -> onSaveAsClick());
             
             
             
@@ -190,8 +192,8 @@ public class MainWin extends JFrame{
     }
     
     protected void onOpenClick(){
-        final JFileChooser fc = newJFileChooser(filename);
-        FileFilter jadeFiles = new FileNameExtentionFilter("JADE files","jade");
+        final JFileChooser fc = new JFileChooser(filename);
+        FileFilter jadeFiles = new FileNameExtensionFilter("JADE files","jade");
         fc.addChoosableFileFilter(jadeFiles);
         fc.setFileFilter(jadeFiles);
         
@@ -208,6 +210,8 @@ public class MainWin extends JFrame{
                 if(!fileVersion.equals(FILE_VERSION)){
                  throw new RuntimeException("Incompatible JADE file format");
                 }
+                
+                //store = new Store(br);
             }
             catch (Exception e){
                 JOptionPane.showMessageDialog(this,"Unable to open" + filename + '\n' + e, "Failed", JOptionPane.ERROR_MESSAGE);
