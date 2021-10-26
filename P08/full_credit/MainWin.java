@@ -223,7 +223,7 @@ public class MainWin extends JFrame{
     protected void onSaveClick(){
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(filename))){
             bw.write(MAGIC_COOKIE + '\n');
-            store.save(bw);
+            //store.save(bw);
             //TODO: implement proper save method
         }
         catch (Exception e){
@@ -235,15 +235,15 @@ public class MainWin extends JFrame{
         final JFileChooser fc = new JFileChooser(filename);
         FileFilter jadeFiles = new FileNameExtensionFilter("JADE files","jade");
         fc.addChoosableFileFilter(jadeFiles);
-        jc.setFileFilter(jadeFiles);
+        fc.setFileFilter(jadeFiles);
         
         int result = fc.showSaveDialog(this);
-        if (resilt == JFileChooser.APPROVE_OPTION){
+        if (result == JFileChooser.APPROVE_OPTION){
             filename = fc.getSelectedFile();
-            if(!filename.getAbsolutePath().endsWith(".nim")){
-                filename=new File(filename.getAbsolutePath()+ ".nim");
+            if(!filename.getAbsolutePath().endsWith(".jade")){
+                filename=new File(filename.getAbsolutePath()+ ".jade");
             }
-            onSaveGameClick();
+            onSaveClick();
         }
     }
     
