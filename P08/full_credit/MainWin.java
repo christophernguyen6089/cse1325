@@ -212,6 +212,19 @@ public class MainWin extends JFrame{
                 }
                 
                 store = new Store("JADE");
+                //TODO: implement proper open method
+                int numProducts = Integer.parseInt(br.readLine());
+                for(int i=0; i<numProducts; i++){
+                    //String readName = String.parse
+                    //double readPrice = Integer.parseDouble(args[1]);
+                    //double readCost  = Integer.parseDouble(args[2]);
+                    if(Integer.parseInt(br.readLine())==0){
+                        Java java = new Java("Pumpkin Spice Latte", 8.00, 1.00, Darkness.blond);
+                    }
+                    else if(Integer.parseInt(br.readLine())==1){
+                        Donut donut=new Donut("Choco Dough", 4.00, 1.00, Frosting.chocolate, true, Filling.unfilled);
+                    }
+                }
                 
             }
             catch (Exception e){
@@ -223,11 +236,28 @@ public class MainWin extends JFrame{
     protected void onSaveClick(){
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(filename))){
             bw.write(MAGIC_COOKIE + '\n');
-            //store.save(bw);
-            //TODO: implement proper save method
+            bw.write(FILE_VERSION + '\n');
+            save(bw);
         }
         catch (Exception e){
             JOptionPane.showMessageDialog(this, "Unable to open " + filename + '\n' + e, "Failed", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    
+    public void save(BufferedWriter bw) throws IOException{
+        //TODO Teach program how to write
+          //hardcoded cause i dont know how to get products :/
+        bw.write(""+store.numberOfProducts()+'\n');
+        for(int i=0; i<store.numberOfProducts(); i++){
+            if(i%2==0){
+                bw.write("0"+'\n');
+            }
+            else if(i%2==1){
+                bw.write("1"+'\n');
+            }
+            bw.write(""+ store.toString(i)+ "\n6.00 " + "\n1.00" + '\n');
+            //bw.write("" +store.products.get(i).name+ "" +store.products.get(i).price+ "" +store.products.get(i).cost+ '\n');
+            //smh imagine protecting your stuff just leave it out in the open and public lmaooooooooooooo
         }
     }
     

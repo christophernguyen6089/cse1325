@@ -30,12 +30,17 @@ public class Store{
     public String toString(int productIndex){
         return products.get(productIndex).name;
     }
+    
+    public void save(BufferedWriter bw) throws IOException{
+        bw.write("Test");
+    }
+    
     @Override
     public String toString(){
     //Code courtesy of George F. Rice, respective licenses apply
-        String result = "\nWelcome to "+ this.storeName + "\n\n";
-        for(int i=0; i<this.products.size(); i++){
-            result += i+ ") "+this.products.get(i) + "\n";
+        String result = "\nWelcome to "+ storeName + "\n\n";
+        for(int i=0; i<products.size(); i++){
+            result += i+ ") "+products.get(i) + "\n";
         }
         return result;
     }
