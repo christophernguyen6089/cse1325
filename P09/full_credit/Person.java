@@ -2,7 +2,7 @@ package store;
 
 import java.util.ArrayList;
 
-public class Person{
+public class Person {
     protected String name;
     protected String phone;
     

@@ -1,8 +1,9 @@
 package store;
+import store.Person;
 
 import java.util.ArrayList;
 
-public class Customer extends Person{
+public class Customer extends Person {
     public Customer(String name, String phone){
         super(name, phone);
     }

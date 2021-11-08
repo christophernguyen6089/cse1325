@@ -50,6 +50,7 @@ public class MainWin extends JFrame{
     private JLabel costNumber;
     
     private JTextField name;
+    private JTextField phone;
     private JSlider price;
     private JSlider cost;
     
@@ -484,7 +485,44 @@ public class MainWin extends JFrame{
     }
     
     protected void onCreateCustomerClick(){
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setSize(480,110);
+
+        JLabel nameLabel = new JLabel("<HTML><br/>Name of new donut</HTML>");
+        add(nameLabel,constraints);
         
+        name = new JTextField(20);
+        name.addActionListener(
+            event -> JOptionPane.showMessageDialog(this, name.getText()));
+        add(name,constraints);
+        
+        JLabel phoneLabel = new JLabel("<HTML><br/>Phone Number of person</HTML>");
+        add(phoneLabel,constraints);
+        
+        phone= new JTextField(20);
+        phone.addActionListener(
+            event -> JOptionPane.showMessageDialog(this, phone.getText()));
+        add(phone,constraints);
+        
+        Object[] objects = {
+            nameLabel, name,
+            phoneLabel,constraints
+        };
+        
+        int button = JOptionPane.showConfirmDialog(
+            this,     
+            objects,
+            "New Person",
+            JOptionPane.OK_CANCEL_OPTION,
+            JOptionPane.QUESTION_MESSAGE
+        );
+        if(button == JOptionPane.OK_OPTION){
+            Person person = new Person(name.getText(), phone.getText());
+            store.addPerson(person);
+        }
+        
+        updateDisplay();
+        setVisible(true);
     }
     
     private void updateDisplay(){
