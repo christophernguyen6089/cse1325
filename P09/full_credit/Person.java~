@@ -1,0 +1,19 @@
+package store;
+
+import java.util.ArrayList;
+
+public class Person{
+    protected String name;
+    protected String phone;
+    
+    public Person(String name, String phone){
+        this.name = name;
+        this.phone= phone;
+    }
+    
+    @Override
+    public String toString(){
+        String result = this.name + " " + this.phone;
+    }
+}
+
