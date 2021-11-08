@@ -28,7 +28,7 @@ public class Store{
         return products.get(productIndex).name;
     }
     
-    public addPerson(Person person){
+    public void addPerson(Person person){
         this.people.add(person);
     }
     public int numberOfPeople(){
@@ -40,8 +40,9 @@ public class Store{
     public String peopleToString(){
         String result;
         for(int i=0; i<people.size(); i++){
-            result
+            result += people.toString();
         }
+        return result;
     }
     
     
