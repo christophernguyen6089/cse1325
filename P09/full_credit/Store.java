@@ -42,7 +42,7 @@ public class Store{
         return people.get(productIndex).name;
     }
     public String peopleToString(){
-        String result = "";
+        String result = "Our beloved Customers: \n";
         for(int i=0; i<people.size(); i++){
             result += people.toString();
         }

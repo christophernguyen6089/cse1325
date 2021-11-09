@@ -505,7 +505,7 @@ public class MainWin extends JFrame{
         
         Object[] objects = {
             nameLabel, name,
-            phoneLabel,constraints
+            phoneLabel, phone
         };
         
         int button = JOptionPane.showConfirmDialog(
@@ -529,7 +529,11 @@ public class MainWin extends JFrame{
                                      .replaceAll("<","%lt;")
                                      .replaceAll(">","&gt;")
                                      .replaceAll("\n","<br/>")
-                              + "</html>");
+                              + store.peopleToString()
+                                     .replaceAll("<","%lt;")
+                                     .replaceAll(">","&gt;")
+                                     .replaceAll("\n","<br/>")            
+                              +"</html>");
     }
     
     protected void onAboutClick(){

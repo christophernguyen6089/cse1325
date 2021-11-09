@@ -25,7 +25,7 @@ public class Person{
     
     @Override
     public String toString(){
-        String result = this.name + " " + this.phone;
+        String result = this.name + " " + this.phone+'\n';
         return result;
     }
 }

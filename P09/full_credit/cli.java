@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 public class cli{
     public static void main(String args[]){
+        /*
         Scanner scan = new Scanner(System.in);
         System.out.println("Please enter the name of the store: ");
         String inputName = scan.nextLine();
@@ -28,6 +29,8 @@ public class cli{
             }
             break;
         }
-        
+        */
     }
 }
+
+
