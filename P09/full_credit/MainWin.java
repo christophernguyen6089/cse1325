@@ -28,10 +28,10 @@ public class MainWin extends JFrame{
     
     private File filename;
     
-    private String NAME = "Jade";
-    private String VERSON = "1.0";
-    private String FILE_VERSION = "1.0";
-    private String MAGIC_COOKIE = "JADE";
+    private String NAME = "JAde";
+    private String VERSON = "1.1";
+    private String FILE_VERSION = "1.1";
+    private String MAGIC_COOKIE = "JAADE";
     
     private JMenuItem mJava;
     private JButton bJava;
@@ -247,6 +247,15 @@ public class MainWin extends JFrame{
                         store.addProduct(donut);
                     }
                 }
+                
+                int numPeople = Integer.parseInt(br.readLine());
+                for(int i=0; i<numPeople; i++){
+                    String readName = br.readLine();
+                    String readPhone= br.readLine();
+                    Person person = new Person(readName,readPhone);
+                    store.addPerson(person);
+                }
+                
                 updateDisplay();
             }
             catch (Exception e){
@@ -281,6 +290,12 @@ public class MainWin extends JFrame{
             bw.write(""+ store.toString(i)+ "\n6.00 " + "\n1.00" + '\n');
             //bw.write("" +store.toString(i)+ "" +store.products.get(i).price+ "" +store.products.get(i).cost+ '\n');
             //smh imagine protecting your stuff, just leave it out in the open and public lmaooooooooooooo
+        }
+        
+        bw.write(""+store.numberOfPeople()+'\n');
+        for(int i=0; i<store.numberOfPeople(); i++){
+            bw.write(""+ store.personToString(i)+ "\n123-456-7890\n");
+            //yes, this is hardcoded too
         }
     }
     
