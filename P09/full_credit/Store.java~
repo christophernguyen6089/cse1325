@@ -37,8 +37,12 @@ public class Store{
         }
     }
     
-    public save(BufferedWriter bw){
-        
+    public void save(BufferedWriter bw){
+        bw.write(storeName + '\n');
+        bw.write("" +products.size()+ '\n');
+        for(Product p:products){
+            p.save(bw);
+        }
     }
     
     

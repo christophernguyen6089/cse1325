@@ -20,16 +20,16 @@ public class Store{
     
     
     public Store(BufferedReader br) throws IOException{
-        this(in.readLine());
-        int size = Integer.parseInt(in.readLine());
+        this(br.readLine());
+        int size = Integer.parseInt(br.readLine());
         for(int i=0; i<size; i++){
-            String productType = in.readLine();
+            String productType = br.readLine();
             switch(productType){
                 case Java.ID:
-                    products.add(new Java(in));
+                    products.add(new Java(br));
                     break;
                 case Donut.ID:
-                    products.add(new Donut(in));
+                    products.add(new Donut(br));
                     break;
                 default:
                     throw new IOException("Invalid product type: "+ productType);
@@ -37,11 +37,11 @@ public class Store{
         }
     }
     
-    public save(BufferedWriter bw){
-        out.write(storeName + '\n');
-        out.write("" +products.size()+ '\n');
+    public void save(BufferedWriter bw){
+        bw.write(storeName + '\n');
+        bw.write("" +products.size()+ '\n');
         for(Product p:products){
-            p.save(out);
+            p.save(bw);
         }
     }
     
