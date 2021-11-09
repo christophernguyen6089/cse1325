@@ -16,8 +16,16 @@ public class Product{
         return this.name;
     }
     
-    public Product(BufferedReader in) throws IOException{
-        this.name = in.readLine();
+    public Product(BufferedReader br) throws IOException{
+        this.name = br.readLine();
+        this.cost = Double.parseDouble(br.readLine());
+        this.price = Double.parseDouble(br.readLine());
+    }
+    
+    public void save(BufferedWriter br) throws IOException{
+        br.write(""+name+'\n');
+        br.write(""+cost+'\n');
+        br.write(""+price+'\n');
     }
     
     @Override

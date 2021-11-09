@@ -27,7 +27,7 @@ public class Donut extends Product{
     }
     
     @Override
-    public save(BufferedWriter bw) throws IOException{
+    public void save(BufferedWriter bw) throws IOException{
         bw.write("store.Donut"+'\n');
         super.save(bw);
         bw.write(""+frosting+'\n');

@@ -9,6 +9,7 @@ public class Customer extends Person{
         super(name, phone);
     }
     
+    /*
     public Customer(BufferedReader br){
         
     }
@@ -16,5 +17,6 @@ public class Customer extends Person{
     public void save(BufferedWriter bw){
         
     }
+    */
 }
 

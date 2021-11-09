@@ -225,10 +225,28 @@ public class MainWin extends JFrame{
                  throw new RuntimeException("Incompatible JADE file format");
                 }
                 
-                Store newStore = new Store(br);
-                store = newStore;
-                filename = fname;
-                
+                store = new Store("JADE");
+                double readPrice;
+                double readCost;
+                int ifJavaOrDonut;
+                //TODO: enum types... eh... those will stay hardcoded... maybe
+                int numProducts = Integer.parseInt(br.readLine());
+                for(int i=0; i<numProducts; i++){
+                    ifJavaOrDonut = Integer.parseInt(br.readLine());
+                    String readName = br.readLine();
+                    readPrice = Double.parseDouble(br.readLine());
+                    readCost  = Double.parseDouble(br.readLine());
+                    if(ifJavaOrDonut==0){
+                        //Java java = new Java("Pumpkin Spice Latte", 6.00, 1.00, Darkness.blond);
+                        Java java = new Java(readName, readPrice, readCost, Darkness.blond);
+                        store.addProduct(java);
+                    }
+                    else if(ifJavaOrDonut==1){
+                        //Donut donut=new Donut("Choco Dough", 5.00, 1.00, Frosting.chocolate, true, Filling.unfilled);
+                        Donut donut=new Donut(readName, readPrice, readCost, Frosting.chocolate, true, Filling.unfilled);
+                        store.addProduct(donut);
+                    }
+                }
                 updateDisplay();
             }
             catch (Exception e){
@@ -248,6 +266,23 @@ public class MainWin extends JFrame{
         }
     }
     
+    public void save(BufferedWriter bw) throws IOException{
+        //TODO Teach program how to write
+          //hardcoded cause i dont know how to get products :/
+        bw.write(""+store.numberOfProducts()+'\n');
+        for(int i=0; i<store.numberOfProducts(); i++){
+            if(i%2==0){
+                bw.write("0"+'\n');
+            }
+            else if(i%2==1){
+                bw.write("1"+'\n');
+            }
+            //the code above was supposed to find out on whether or not the element in the arraylist is a java or donut product, but meh...
+            bw.write(""+ store.toString(i)+ "\n6.00 " + "\n1.00" + '\n');
+            //bw.write("" +store.toString(i)+ "" +store.products.get(i).price+ "" +store.products.get(i).cost+ '\n');
+            //smh imagine protecting your stuff, just leave it out in the open and public lmaooooooooooooo
+        }
+    }
     
     protected void onSaveAsClick(){
         final JFileChooser fc = new JFileChooser(filename);
@@ -264,8 +299,7 @@ public class MainWin extends JFrame{
             onSaveClick();
         }
     }
-    
-        
+     
     protected void onCreateJavaClick(){
         //super("Java");
         /*JDialog createJava = new JDialog();

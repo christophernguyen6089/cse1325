@@ -1,7 +1,5 @@
 package store;
 
-import java.io.*;
-
 import java.util.ArrayList;
 
 public class Donut extends Product{
@@ -18,23 +16,6 @@ public class Donut extends Product{
         this.sprinkles = sprinkles;
         this.filling = filling;
     }
-    
-    public Donut(BufferedReader br) throws IOException{
-        super(br);
-        this.frosting = Frosting.valueOf(br.readLine());
-        this.filling = Filling.valueOf(br.readLine());
-        this.sprinkles = Boolean.parseBoolean(br.readLine());
-    }
-    
-    @Override
-    public void save(BufferedWriter bw) throws IOException{
-        bw.write("store.Donut"+'\n');
-        super.save(bw);
-        bw.write(""+frosting+'\n');
-        bw.write(""+filling+'\n');
-        bw.write(""+sprinkles+'\n');
-    }
-    
     @Override
     public String toString(){
     //Code courtesy of George F. Rice, respective licenses apply

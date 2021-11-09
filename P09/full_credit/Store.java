@@ -19,33 +19,6 @@ public class Store{
     }
     
     
-    public Store(BufferedReader br) throws IOException{
-        this(br.readLine());
-        int size = Integer.parseInt(br.readLine());
-        for(int i=0; i<size; i++){
-            String productType = br.readLine();
-            switch(productType){
-                case Java.ID:
-                    products.add(new Java(br));
-                    break;
-                case Donut.ID:
-                    products.add(new Donut(br));
-                    break;
-                default:
-                    throw new IOException("Invalid product type: "+ productType);
-            }
-        }
-    }
-    
-    public void save(BufferedWriter bw){
-        bw.write(storeName + '\n');
-        bw.write("" +products.size()+ '\n');
-        for(Product p:products){
-            p.save(bw);
-        }
-    }
-    
-    
     public String storeName(){
         return this.storeName;
     }

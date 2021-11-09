@@ -1,37 +1,35 @@
 package store;
 
-import java.io.*;
+import java.util.ArrayList;
 
-public class Product{
-    protected String name;
-    protected double price;
-    protected double cost;
+public class Java extends Product{
+    protected Darkness darkness;
+    protected ArrayList<Shot> shots;
 
-    public Product(String name, double price, double cost){
-        this.name=name;
-        this.price=price;
-        this.cost=cost;
+    public Java(String name, double price, double cost, Darkness darkness){
+        super(name,price,cost);
+        this.darkness = darkness;
+        this.shots = new ArrayList<>();
     }
-    public String name(){
-        return this.name;
+    public void addShot(Shot shot){
+        this.shots.add(shot);
     }
-    
-    public Product(BufferedReader br) throws IOException{
-        this.name = br.readLine();
-        this.cost = Double.parseDouble(br.readLine());
-        this.price = Double.parseDouble(br.readLine());
-    }
-    
-    public void save(BufferedWriter br) throws IOException{
-        br.write(""+name+'\n');
-        br.write(""+cost+'\n');
-        br.write(""+price+'\n');
-    }
-    
     @Override
     public String toString(){
     //Code courtesy of George F. Rice, respective licenses apply
-        return "Name: "+this.name+"\nPrice: $"+this.price;
+        String result = name + " (" + darkness + " with ";
+        if(shots.size() == 0){
+            result += "no shots";
+        }
+        else{
+            String separator = "";
+            for(Shot s: shots){
+                result += separator +s;
+                separator = ", ";
+            }
+        }
+        result += ") $" +price;
+        return result;
     }
 }
 

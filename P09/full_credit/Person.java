@@ -1,7 +1,5 @@
 package store;
 
-import java.io.*;
-
 import java.util.ArrayList;
 
 public class Person{
@@ -13,6 +11,7 @@ public class Person{
         this.phone= phone;
     }
     
+    /*
     public Person(BufferedReader br){
         
     }
@@ -22,7 +21,7 @@ public class Person{
     public void save(BufferedWriter bw){
         
     }
-    
+    */
     
     @Override
     public String toString(){

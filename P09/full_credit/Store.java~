@@ -1,51 +1,23 @@
 package store;
 
-import store.*;
-
-import java.io.*;
-
 import java.util.ArrayList;
 import java.util.Arrays;
-
-import java.awt.*;
 
 public class Store{
     protected String storeName;
     protected ArrayList<Product> products = new ArrayList<Product>();
-    protected ArrayList<Person> people    = new ArrayList<Person>();
+    
+    //products.add(new Donut("Coco Late",2.99,0.99,chocolate,true,unfilled));
+    //addProduct(new Donut("Coco Late",2.99,0.99,chocolate,true,unfilled));
+    
+    //Product ChocoDoe = new Product("Chocolate",2.99,0.99, chocolate, true, unfilled);
+    //Donut ChocoDoe = new Donut("Chocolate",2.99,0.99, chocolate, true, unfilled);
+    
+    //addProduct(ChocoDoe);
 
     public Store(String storeName){
         this.storeName=storeName;
     }
-    
-    
-    public Store(BufferedReader br) throws IOException{
-        this(in.readLine());
-        int size = Integer.parseInt(in.readLine());
-        for(int i=0; i<size; i++){
-            String productType = in.readLine();
-            switch(productType){
-                case Java.ID:
-                    products.add(new Java(in));
-                    break;
-                case Donut.ID:
-                    products.add(new Donut(in));
-                    break;
-                default:
-                    throw new IOException("Invalid product type: "+ productType);
-            }
-        }
-    }
-    
-    public void save(BufferedWriter bw){
-        bw.write(storeName + '\n');
-        bw.write("" +products.size()+ '\n');
-        for(Product p:products){
-            p.save(bw);
-        }
-    }
-    
-    
     public String storeName(){
         return this.storeName;
     }
@@ -58,26 +30,6 @@ public class Store{
     public String toString(int productIndex){
         return products.get(productIndex).name;
     }
-    
-    public void addPerson(Person person){
-        this.people.add(person);
-    }
-    public int numberOfPeople(){
-        return this.people.size();
-    }
-    public String personToString(int productIndex){
-        return people.get(productIndex).name;
-    }
-    public String peopleToString(){
-        String result = "";
-        for(int i=0; i<people.size(); i++){
-            result += people.toString();
-        }
-        return result;
-    }
-    
-    
-    
     @Override
     public String toString(){
     //Code courtesy of George F. Rice, respective licenses apply
