@@ -50,6 +50,7 @@ public class MainWin extends JFrame{
     private JLabel costNumber;
     
     private JTextField name;
+    private JTextField phone;
     private JSlider price;
     private JSlider cost;
     

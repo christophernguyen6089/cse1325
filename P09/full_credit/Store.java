@@ -1,7 +1,13 @@
 package store;
 
+import store.*;
+
+import java.io.*;
+
 import java.util.ArrayList;
 import java.util.Arrays;
+
+import java.awt.*;
 
 public class Store{
     protected String storeName;
@@ -13,6 +19,31 @@ public class Store{
     }
     
     
+    public Store(BufferedReader br) throws IOException{
+        this(in.readLine());
+        int size = Integer.parseInt(in.readLine());
+        for(int i=0; i<size; i++){
+            String productType = in.readLine();
+            switch(productType){
+                case Java.ID:
+                    products.add(new Java(in));
+                    break;
+                case Donut.ID:
+                    products.add(new Donut(in));
+                    break;
+                default:
+                    throw new IOException("Invalid product type: "+ productType);
+            }
+        }
+    }
+    
+    public save(BufferedWriter bw){
+        out.write(storeName + '\n');
+        out.write("" +products.size()+ '\n');
+        for(Product p:products){
+            p.save(out);
+        }
+    }
     
     
     public String storeName(){
@@ -38,7 +69,7 @@ public class Store{
         return people.get(productIndex).name;
     }
     public String peopleToString(){
-        String result;
+        String result = "";
         for(int i=0; i<people.size(); i++){
             result += people.toString();
         }
