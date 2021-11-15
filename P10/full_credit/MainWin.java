@@ -40,6 +40,8 @@ public class MainWin extends JFrame{
     
     private JMenuItem mCustomer;
     private JButton bCustomer;
+    private JMenuItem mServer;
+    private JButton bServer;
     
     private JButton bAbout;
     private JButton bQuit;
@@ -90,6 +92,7 @@ public class MainWin extends JFrame{
         mJava = new JMenuItem("Java");
         mDonut= new JMenuItem("Donut");
         mCustomer = new JMenuItem("Customer");
+        mServer = new JMenuItem("Server");
         JMenuItem about= new JMenu("About");
         
         mNew   = new JMenu("New");
@@ -101,6 +104,7 @@ public class MainWin extends JFrame{
         create.add(mJava);
         create.add(mDonut);
         create.add(mCustomer);
+        create.add(mServer);
         help.add(about);
         
         file.add(mNew);
@@ -117,6 +121,7 @@ public class MainWin extends JFrame{
         mJava.addActionListener(event -> onCreateJavaClick());
         mDonut.addActionListener(event -> onCreateDonutClick());
         mCustomer.addActionListener(event -> onCreateCustomerClick());
+        mServer.addActionListener(event -> onCreateServerClick());
         about.addActionListener(event -> onAboutClick());
         
         setJMenuBar(menubar);
@@ -148,8 +153,6 @@ public class MainWin extends JFrame{
             bSaveAs.addActionListener(event -> onSaveAsClick());
             
             
-            
-            
         bJava = new JButton(new ImageIcon("java.png"));
             bJava.setActionCommand("Create new Java");
             bJava.setToolTipText("Create a new drink");
@@ -168,6 +171,12 @@ public class MainWin extends JFrame{
             toolbar.add(bCustomer);
             bCustomer.addActionListener(event -> onCreateCustomerClick());
         
+        bServer = new JButton(new ImageIcon("server.png"));
+            bServer.setActionCommand("Create new Server");
+            bServer.setToolTipText("Create a new Server");
+            toolbar.add(bServer);
+            bServer.addActionListener(event -> onCreateServerClick);
+            
             
         bAbout= new JButton(new ImageIcon("question.png"));
             bAbout.setActionCommand("About the program");
