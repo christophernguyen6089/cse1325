@@ -530,18 +530,17 @@ public class MainWin extends JFrame{
         add(frosting,constraints);
         
         
-        
-        JLabel sprinklesLabel = new JLabel("<HTML><br/>Sprinkles on your Donut?");
-        
         /*
-        boolean[] sprinklesOptions = {true, false};
-        sprinkles = new JComboBox<boolean>(sprinklesOptions);
-        sprinkles.addActionListener(
-            event -> JOptionPane.showMessageDialog(this, (boolean)sprinkles.getSelectedItem()));
+        JLabel sprinklesLabel = new JLabel("<HTML><br/>Sprinkles on your Donut?");
+        JRadioButton yes = new JRadioButton("Yes");
+        JRadioButton no  = new JRadioButton("No");
+        ButtonGroup sprinkles = new ButtonGroup();
+        sprinkles.add(yes);
+        sprinkles.add(no);
         */
         
         
-        add(sprinkles,constraints);    
+        //add(sprinkles,constraints);    
         
         
         JLabel fillingLabel = new JLabel("<HTML><br/>Filling of new Donut");
@@ -558,7 +557,7 @@ public class MainWin extends JFrame{
             priceLabel, price, priceNumber,
             costLabel, cost, costNumber,
             frostingLabel, frosting,
-            sprinklesLabel, sprinkles,
+            //sprinklesLabel, sprinkles,
             fillingLabel, filling
         };
         
