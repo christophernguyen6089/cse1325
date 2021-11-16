@@ -13,6 +13,7 @@ public class Store{
     protected String storeName;
     protected ArrayList<Product> products = new ArrayList<Product>();
     protected ArrayList<Person> people    = new ArrayList<Person>();
+    protected ArrayList<Order> orders     = new ArrayList<Order>();
 
     public Store(String storeName){
         this.storeName=storeName;
@@ -31,6 +32,33 @@ public class Store{
     public String toString(int productIndex){
         return products.get(productIndex).name;
     }
+    
+    
+    
+    
+    
+    public void addOrder(Order order){
+        this.orders.add(order);
+    }
+    public String ordersToString(){
+        String result = "";
+        return result;
+    }
+    
+    /*
+    public Person[] getPeople(){
+        
+    }
+    
+    public Product[] getProducts(){
+    
+    }
+    
+    public Orders[] getOrders(){
+        
+    }
+    */
+    
     
     public void addPerson(Person person){
         this.people.add(person);

@@ -1,9 +1,12 @@
 package store;
 
 import java.util.ArrayList;
+import java.util.Map;
+import java.util.HashMap;
 
 public class Order{
     private int id;
+    static int nextID=0;
     private Customer customer;
     private Server server;
     
@@ -13,8 +16,17 @@ public class Order{
     }
     
     public int getID(){
-        
+        return this.id;
     }
    
+    public void addProduct(int quantity, Product product){
+        
+    }
+    
+    @Override
+    public String toString(){
+        String result = "";
+        return result;
+    }
 }
 

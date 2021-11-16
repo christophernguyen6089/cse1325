@@ -28,15 +28,18 @@ public class MainWin extends JFrame{
     
     private File filename;
     
-    private String NAME = "JAde";
-    private String VERSON = "1.1";
-    private String FILE_VERSION = "1.1";
-    private String MAGIC_COOKIE = "JAADE";
+    private String NAME = "JADe";
+    private String VERSON = "1.2";
+    private String FILE_VERSION = "1.2";
+    private String MAGIC_COOKIE = "JAAADE";
     
     private JMenuItem mJava;
     private JButton bJava;
     private JMenuItem mDonut;
     private JButton bDonut;
+    
+    private JMenuItem mOrder;
+    private JButton bOrder;
     
     private JMenuItem mCustomer;
     private JButton bCustomer;
@@ -58,6 +61,9 @@ public class MainWin extends JFrame{
     private JSlider cost;
     
     private JComboBox combo;
+    
+    private JComboBox customerCombo;
+    private JComboBox serverCombo;
     
     private JComboBox darkness;
     private JComboBox frosting;
@@ -88,19 +94,21 @@ public class MainWin extends JFrame{
         JMenu create = new JMenu("Create");
         JMenu help = new JMenu("Help");
         
-        JMenuItem quit = new JMenu("Quit");
+        JMenuItem quit = new JMenuItem("Quit");
+        mOrder= new JMenuItem("Order");
         mJava = new JMenuItem("Java");
         mDonut= new JMenuItem("Donut");
         mCustomer = new JMenuItem("Customer");
         mServer = new JMenuItem("Server");
-        JMenuItem about= new JMenu("About");
+        JMenuItem about= new JMenuItem("About");
         
-        mNew   = new JMenu("New");
-        mOpen  = new JMenu("Open");
-        mSave  = new JMenu("Save");
-        mSaveAs= new JMenu("Save As");
+        mNew   = new JMenuItem("New");
+        mOpen  = new JMenuItem("Open");
+        mSave  = new JMenuItem("Save");
+        mSaveAs= new JMenuItem("Save As");
         
         file.add(quit);
+        create.add(mOrder);
         create.add(mJava);
         create.add(mDonut);
         create.add(mCustomer);
@@ -151,7 +159,12 @@ public class MainWin extends JFrame{
             bSaveAs.setActionCommand("Save your store as a new file");
             toolbar.add(bSaveAs);
             bSaveAs.addActionListener(event -> onSaveAsClick());
-            
+        
+        bOrder = new JButton(new ImageIcon("order.png"));
+            bOrder.setActionCommand("Create new order");
+            bOrder.setToolTipText("Create a new order");
+            toolbar.add(bOrder);
+            bOrder.addActionListener(event -> onCreateOrderClick());  
             
         bJava = new JButton(new ImageIcon("java.png"));
             bJava.setActionCommand("Create new Java");
@@ -175,7 +188,7 @@ public class MainWin extends JFrame{
             bServer.setActionCommand("Create new Server");
             bServer.setToolTipText("Create a new Server");
             toolbar.add(bServer);
-            bServer.addActionListener(event -> onCreateServerClick);
+            bServer.addActionListener(event -> onCreateServerClick());
             
             
         bAbout= new JButton(new ImageIcon("question.png"));
@@ -324,18 +337,62 @@ public class MainWin extends JFrame{
             onSaveClick();
         }
     }
+    
+    protected void onCreateOrderClick(){
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setSize(480,110);
+        
+        JLabel customerLabel = new JLabel("<HTML><br/>Customer</HTML>");
+        add(customerLabel,constraints);
+        
+        JTextField customerName = new JTextField(20);
+            customerName.addActionListener(
+                event -> JOptionPane.showMessageDialog(this, customerName.getText()));
+            add(customerName,constraints);
+        
+        JLabel serverLabel = new JLabel("<HTML><br/>Server</HTML>");
+        add(serverLabel,constraints);
+        
+        JTextField serverName = new JTextField(20);
+            serverName.addActionListener(
+                event -> JOptionPane.showMessageDialog(this, serverName.getText()));
+            add(serverName,constraints);
+                
+        /*
+        Customer[] customerOptions;
+        customerCombo = new JComboBox<Customer>(customerOptions);
+            add(customerCombo,constraints);
+            
+        Server[] serverOptions;
+        serverCombo = new JComboBox<Server>(serverOptions);
+            add(serverCombo,constraints);
+        */
+        
+        Object[] objects = {
+            customerLabel, customerName,
+            serverLabel, serverName,
+        };
+        
+        int button = JOptionPane.showConfirmDialog(
+            this,     
+            objects,
+            "New Order",
+            JOptionPane.OK_CANCEL_OPTION,
+            JOptionPane.QUESTION_MESSAGE
+        );
+        
+        if(button == JOptionPane.OK_OPTION){
+            store.addPerson(new Server(name.getText(),phone.getText(),ssn.getText()));
+        }
+        
+        updateDisplay();
+        setVisible(true);  
+    }
+    
      
     protected void onCreateJavaClick(){
-        //super("Java");
-        /*JDialog createJava = new JDialog();
-        createJava.setLayout(new FlowLayout());
-        createJava.setSize(480,110);
-        createJava.setLayout(new GridBagLayout());
-        */
-        //try{
             setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            setSize(480,110);
-        //setLayout(new GridBagLayout());      
+            setSize(480,110);   
         
             JLabel nameLabel = new JLabel("<HTML><br/>Name of new drink</HTML>");
             add(nameLabel,constraints);
@@ -549,13 +606,12 @@ public class MainWin extends JFrame{
         int button = JOptionPane.showConfirmDialog(
             this,     
             objects,
-            "New Person",
+            "New Customer",
             JOptionPane.OK_CANCEL_OPTION,
             JOptionPane.QUESTION_MESSAGE
         );
         if(button == JOptionPane.OK_OPTION){
-            Person person = new Person(name.getText(), phone.getText());
-            store.addPerson(person);
+            store.addPerson(new Customer(name.getText(),phone.getText()));
         }
         
         updateDisplay();
@@ -599,14 +655,13 @@ public class MainWin extends JFrame{
         int button = JOptionPane.showConfirmDialog(
             this,     
             objects,
-            "New Person",
+            "New Server",
             JOptionPane.OK_CANCEL_OPTION,
             JOptionPane.QUESTION_MESSAGE
         );
         
         if(button == JOptionPane.OK_OPTION){
-            Person person = new Person(name.getText(), phone.getText());
-            store.addPerson(person);
+            store.addPerson(new Server(name.getText(),phone.getText(),ssn.getText()));
         }
         
         updateDisplay();
