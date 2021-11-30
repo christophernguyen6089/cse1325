@@ -4,3 +4,6 @@ Step 2: command used: time java Primes 1 0 222222
  real: 0m27.257s
  user: 0m26.343s
  sys:  0m0.20s
+ 
+Note to TA: It was half-intentional for me to leave steps 3 and 4 of the text file blank.
+I wasn't able to find a solution to the bugs I made when writing out threads, so this was all I made during this time.

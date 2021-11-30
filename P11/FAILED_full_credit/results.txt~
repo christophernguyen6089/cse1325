@@ -1,0 +1,10 @@
+Step 1: Number of Cores in Test Environment: 1
+
+Step 2: command used: time java Primes 1 0 222222
+ real: 0m27.257s
+ user: 0m26.343s
+ sys:  0m0.20s
+ 
+Note to TA: If you happen to read this, this means that I pretty much threw the towel on threading. 
+When I tried to run the code, it gave me an error, and I didn't manage to debug it in time.
+To be fair, this is what I deserve for procrastinating.
