@@ -5,7 +5,7 @@ import java.lang.Math;
 // Committed to the Public Domain by Prof Rice
 // You MAY adopt and modify this code without attribution
 
-public class Primes {
+public class Primes extends Thread{
     ArrayList<Integer> primes;
     int numThreads;
     
@@ -25,9 +25,8 @@ public class Primes {
         Thread[] threads = new Thread[numThreads];
         
         for(int i=0; i<numThreads; i++){
-            threads[i] = new Thread(new Primes(1));
+            threads[i] = new Thread(new Primes(numThreads));
             threads[i].start();
-        
         }
         
         
