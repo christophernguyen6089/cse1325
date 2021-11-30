@@ -6,10 +6,10 @@ import java.lang.*;
 // You MAY adopt and modify this code without attribution
 
 public class Primes {
+    ArrayList<Integer> primes = new ArrayList<Integer>();
     public Primes(int numThreads) {
     }
     public Primes findPrimes(int lower, int upper) {
-        ArrayList<Integer> primes = new ArrayList<Integer>();
         for(int i=lower; i<upper; i++){
             if(isPrime(i)==true){
                 primes.add(i);    
@@ -27,10 +27,14 @@ public class Primes {
         return flag;
     }
     public int numberOfPrimes() {
-        return 0; //replace
+        return primes.size();
     }
     public Integer[] toArray() {
-        return new Integer[0]; // replace
+        Integer[] primesArray = new Integer[primes.size()];
+        for(int i=0; i<primes.size(); i++){
+            primesArray[i]=primes.get(i);
+        }
+        return primesArray;
     }
     
     public static void main(String[] args) {
