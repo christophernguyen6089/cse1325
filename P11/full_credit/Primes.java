@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 import java.text.NumberFormat;
-import java.lang.*;
+import java.lang.Math;
 
 // Committed to the Public Domain by Prof Rice
 // You MAY adopt and modify this code without attribution
@@ -10,7 +10,9 @@ public class Primes {
     public Primes(int numThreads) {
     }
     public Primes findPrimes(int lower, int upper) {
-        for(int i=lower; i<upper; i++){
+        primes.add(1);
+        primes.add(2);
+        for(int i=3; i<upper+1; i++){
             if(isPrime(i)==true){
                 primes.add(i);    
             }
@@ -19,7 +21,7 @@ public class Primes {
     }
     protected boolean isPrime(int number){
         boolean flag = true;
-        for(int i=1; i<Math.sqrt(number); i++){
+        for(int i=2; i<(number/2)+1; i++){
             if(number%i==0){
                 flag = false;
             }
