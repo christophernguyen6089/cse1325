@@ -27,7 +27,7 @@ public class Primes {
         return flag;
     }
     public int numberOfPrimes() {
-        return 0; //replace
+        return primes.size();
     }
     public Integer[] toArray() {
         return new Integer[0]; // replace
