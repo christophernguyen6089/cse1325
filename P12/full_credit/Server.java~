@@ -1,0 +1,11 @@
+package store;
+
+public class Server extends Person{
+    private String ssn;
+    
+    public Server(String name, String phone, String ssn){
+        this.name = name;
+        this.phone= phone;
+        this.ssn  = ssn;
+    }
+}
