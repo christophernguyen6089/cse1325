@@ -48,6 +48,8 @@ public class MainWin extends JFrame{
     private JMenuItem mManager;
     private JButton bManager;
     
+    private JButton bProfit;
+    
     private JButton bAbout;
     private JButton bQuit;
     
@@ -102,6 +104,7 @@ public class MainWin extends JFrame{
         mDonut= new JMenuItem("Donut");
         mCustomer = new JMenuItem("Customer");
         mServer = new JMenuItem("Server");
+        mManager = new JMenuItem("Manager");
         JMenuItem about= new JMenuItem("About");
         
         mNew   = new JMenuItem("New");
@@ -199,7 +202,6 @@ public class MainWin extends JFrame{
             bManager.setToolTipText("Create a new Manager");
             toolbar.add(bManager);
             bManager.addActionListener(event->onCreateManagerClick());
-            
             
         bAbout= new JButton(new ImageIcon("question.png"));
             bAbout.setActionCommand("About the program");
