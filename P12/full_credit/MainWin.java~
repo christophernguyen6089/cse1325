@@ -45,6 +45,8 @@ public class MainWin extends JFrame{
     private JButton bCustomer;
     private JMenuItem mServer;
     private JButton bServer;
+    private JMenuItem mManager;
+    private JButton bManager;
     
     private JButton bAbout;
     private JButton bQuit;
@@ -113,6 +115,7 @@ public class MainWin extends JFrame{
         create.add(mDonut);
         create.add(mCustomer);
         create.add(mServer);
+        create.add(mManager);
         help.add(about);
         
         file.add(mNew);
@@ -130,6 +133,7 @@ public class MainWin extends JFrame{
         mDonut.addActionListener(event -> onCreateDonutClick());
         mCustomer.addActionListener(event -> onCreateCustomerClick());
         mServer.addActionListener(event -> onCreateServerClick());
+        mManager.addActionListener(event -> onCreateManagerClick());
         about.addActionListener(event -> onAboutClick());
         
         setJMenuBar(menubar);
@@ -189,6 +193,12 @@ public class MainWin extends JFrame{
             bServer.setToolTipText("Create a new Server");
             toolbar.add(bServer);
             bServer.addActionListener(event -> onCreateServerClick());
+            
+        bManager = new JButton(new ImageIcon("manager.png"));
+            bManager.setActionCommand("Create new Manager");
+            bManager.setToolTipText("Create a new Manager");
+            toolbar.add(bManager);
+            bManager.addActionListener(event->onCreateManagerClick());
             
             
         bAbout= new JButton(new ImageIcon("question.png"));
@@ -357,6 +367,14 @@ public class MainWin extends JFrame{
             serverName.addActionListener(
                 event -> JOptionPane.showMessageDialog(this, serverName.getText()));
             add(serverName,constraints);
+        
+        JLabel productLabel = new JLabel("<HTML><br/>Order</HTML>");
+        add(productLabel,constraints);
+        
+        JTextField productName = new JTextField(20);
+            productName.addActionListener(
+                event -> JOptionPane.showMessageDialog(this, productName.getText()));
+            add(productName,constraints);
                 
         /*
         Customer[] customerOptions;
@@ -371,7 +389,12 @@ public class MainWin extends JFrame{
         Object[] objects = {
             customerLabel, customerName,
             serverLabel, serverName,
+            productLabel, productName
         };
+        
+        
+        
+        
         
         int button = JOptionPane.showConfirmDialog(
             this,     
@@ -380,10 +403,7 @@ public class MainWin extends JFrame{
             JOptionPane.OK_CANCEL_OPTION,
             JOptionPane.QUESTION_MESSAGE
         );
-        
-        if(button == JOptionPane.OK_OPTION){
-            store.addPerson(new Server(name.getText(),phone.getText(),ssn.getText()));
-        }
+
         
         updateDisplay();
         setVisible(true);  
@@ -540,7 +560,7 @@ public class MainWin extends JFrame{
         */
         
         
-        add(sprinkles,constraints);    
+        //add(sprinkles,constraints);    
         
         
         JLabel fillingLabel = new JLabel("<HTML><br/>Filling of new Donut");
@@ -557,7 +577,7 @@ public class MainWin extends JFrame{
             priceLabel, price, priceNumber,
             costLabel, cost, costNumber,
             frostingLabel, frosting,
-            sprinklesLabel, sprinkles,
+            //sprinklesLabel, sprinkles,
             fillingLabel, filling
         };
         
@@ -650,18 +670,53 @@ public class MainWin extends JFrame{
             phoneLabel, phone,
             ssnLabel, ssn
         };
-        
-        int button = JOptionPane.showConfirmDialog(
-            this,     
-            objects,
-            "New Server",
-            JOptionPane.OK_CANCEL_OPTION,
-            JOptionPane.QUESTION_MESSAGE
-        );
-        
-        if(button == JOptionPane.OK_OPTION){
-            store.addPerson(new Server(name.getText(),phone.getText(),ssn.getText()));
         }
+        
+        protected void onCreateManagerClick(){
+            setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            setSize(480,110);
+        
+            JLabel nameLabel = new JLabel("<HTML><br/>Name of new manager<HTML>");
+            add(nameLabel,constraints);
+        
+            name = new JTextField(20);
+            name.addActionListener(
+                event -> JOptionPane.showMessageDialog(this, name.getText()));
+            add(name,constraints);
+        
+            JLabel phoneLabel = new JLabel("<HTML><br/>Phone number of new manager<HTML>");
+            add(phoneLabel,constraints);
+        
+            phone= new JTextField(20);
+            phone.addActionListener(
+                event -> JOptionPane.showMessageDialog(this, phone.getText()));
+            add(phone,constraints);
+        
+            JLabel ssnLabel = new JLabel("<HTML><br/>SSN of new manager<HTML>");
+            add(ssnLabel,constraints);
+        
+            ssn= new JTextField(20);
+            ssn.addActionListener(
+                event -> JOptionPane.showMessageDialog(this, ssn.getText()));
+            add(ssn,constraints);
+        
+            Object[] objects = {
+                nameLabel, name,
+                phoneLabel, phone,
+                ssnLabel, ssn
+            };
+        
+            int button = JOptionPane.showConfirmDialog(
+                this,     
+                objects,
+                "New Manager",
+                JOptionPane.OK_CANCEL_OPTION,
+                JOptionPane.QUESTION_MESSAGE
+            );
+        
+            if(button == JOptionPane.OK_OPTION){
+                store.addPerson(new Server(name.getText(),phone.getText(),ssn.getText()));
+            }
         
         updateDisplay();
         setVisible(true);    

@@ -70,7 +70,7 @@ public class Store{
         return people.get(productIndex).name;
     }
     public String peopleToString(){
-        String result = "Our beloved Customers: \n";
+        String result = "Our beloved people: \n";
         for(int i=0; i<people.size(); i++){
             result += people.toString();
         }
